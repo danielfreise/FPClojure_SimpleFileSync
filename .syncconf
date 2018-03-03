@@ -1,0 +1,9 @@
+( 
+  :-mode        "server" 
+  :-host        "localhost" 
+  :-port        50000 
+  :-keepAlive   10000 
+ 
+  :-filePath    "/PATH" 
+  :-syncKey     [100 102 100 102 101 103 101 103]
+)
