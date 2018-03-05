@@ -27,24 +27,58 @@ Download from https://bitbucket.org/Suddoha/file-synchronization-clojure-project
 
 ## Usage
 
-FIXME: explanation
+    $ java -jar filesync-0.1.0-standalone.jar
 
-    $ java -jar filesync-0.1.0-standalone.jar [args]
+# Configuration
+## Server
 
-## Options
+To successfully start the application as server, you have to create a .syncconf file at the directory of your filesync-0.1.0-standalone.jar
+Example .syncconf contents:
+
+```
+( 
+  :-mode        "server" 
+  :-host        "localhost" 
+  :-port        50000 
+  :-keepAlive   30000 
+)
+```
+
+## Client
+To successfully start the application as client, you have to create a .syncconf file at the directory of your filesync-0.1.0-standalone.jar
+Example .syncconf contents:
+
+```
+( 
+  :-mode        "client" 
+  :-host        "localhost" 
+  :-port        50000 
+  :-keepAlive   10000 
+
+  :-filePath    "/Absolute/Data/Path" 
+  :-syncKey     [100 100 100 100 100 100 100 100]
+)
+```
+
+Please make sure you will change the bytes defined under :-syncKey
+The port specified in :-port has to match the server port of the application. The corresponding goes for :-host.
 
 
-## Examples
+# Ignorefile
 
-...
+You can place a .ignore file within your data directory (clientside). Each line of that file is a regular expression that will exclude some path or file from the synchronization.
 
-### Bugs
+Example:
 
-...
+```
+.git/.*
+target/.*
+```
 
-### Any Other Sections
-### That You Think
-### Might be Useful
+# Build
+
+To build the application run `lein uberjar` in the project root.
+You will find the builded files in `target/uberjar/`
 
 ## License
 
